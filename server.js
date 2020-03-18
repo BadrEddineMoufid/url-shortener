@@ -31,8 +31,10 @@ app.post('/shortUrls', async (req, res)=>{
 
 //redirecting to fullUrl from shortUrl 
 app.get('/:shortUrl', async (req, res)=>{
+
 	const shortUrl = await ShortUrl.findOne({ short: req.params.shortUrl })
-	if(shortUrl == null)return res.render('not-found/not-found')
+
+	if(shortUrl == null)return res.send("not found")
 
 	//just logging the return object from finOne() function
 	console.log(shortUrl);
